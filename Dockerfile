@@ -4,6 +4,6 @@ WORKDIR /app
 
 RUN pip install -r ./requirements.py
 
-COPY tasks.py .
+COPY . .
 
 CMD ["celery", "-A", "tasks", "worker", "--loglevel=info"]

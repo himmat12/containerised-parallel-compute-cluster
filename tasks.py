@@ -15,9 +15,3 @@ def generate_k_square_numbers(k:int) -> list[int]:
         n += 1          
     print(f"[Worker] Finished computation!\nResult: {k_squares}")
     return k_squares
-
-# def main():
-#     print('Heavy computation task')
-
-# if __name__ == "__main__":
-#     main()

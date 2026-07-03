@@ -5,16 +5,30 @@ services:
     image: redis:7-alpine
     ports:
       - "6379:6379"
-    # healthcheck:
-    #   test: ["executable", "arg"]
-    #   interval: 1m30s
-    #   timeout: 30s
-    #   retries: 5
-    #   start_period: 30s
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
   
   worker:
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    command: ["CMD", "celery -A tasks worker --loglevel=info"]
+    healthcheck:
+      test: ["CMD", "celery", "celery -A tasks inspect ping"]
+      interval: 3s
+      timeout: 3s
+
+  producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      worker:
+      condition: service_healthy
+    command: ["python", "trigger.py"]

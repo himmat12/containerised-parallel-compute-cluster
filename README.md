@@ -35,3 +35,10 @@ If the requirement is to process an array of size $n$ containing various integer
 |                                                                 |
 +-----------------------------------------------------------------+
 ```
+
+## Getting started
+
+Steps:
+1. CLone the repo: `git clone https://github.com/himmat12/distributed-docker-cluster.git`
+2. Open the cloned directory: `cd distributed-docker-cluster`
+3. Run the compose: `docker compose up --build --scale worker=4` -> spawns all compose service containers and replicates 4 worker service containers for parallel computation for generating square numbers

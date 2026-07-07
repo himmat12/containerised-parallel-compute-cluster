@@ -42,10 +42,7 @@ The system uses a producer/consumer architecture. The producer in [`trigger.py`]
 Steps:
 1. Clone the repo: `git clone https://github.com/himmat12/containerised-parallel-compute-cluster.git`
 2. Open the cloned directory: `cd containerised-parallel-compute-cluster`
-3. Create venv: `python -m venv .venv` 
-4. Activate venv: Windows `.venv/Scripts/Activate.ps1` | Linux `$ source <venv>/bin/activate`
-5. Install packages: `pip install --no-cache-dir -r requirements.txt`
-6. Run the compose: 
+3. Run the compose: 
     - `docker compose up --build` to run a single worker to compute the whole array numbers prime factors.
     - `docker compose up --build --scale worker=4` to run 4 parallel workers at once to distribute the computation.
 
